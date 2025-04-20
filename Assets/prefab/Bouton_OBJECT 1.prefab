@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5a61c6a8b94f5a8448f44a4acb6d8e44, type: 2}
+  - {fileID: 2100000, guid: 8b3ffb65db16b6540aa58a8567933ef1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 8072529082827076627}
   - component: {fileID: 478002428675503721}
   m_Layer: 0
-  m_Name: Bouton_OBJECT
+  m_Name: Bouton_OBJECT 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

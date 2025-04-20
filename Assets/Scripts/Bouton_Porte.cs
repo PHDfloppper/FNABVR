@@ -10,6 +10,24 @@ public class Bouton_Porte : MonoBehaviour
     GameObject presser;
 
     private bool isPressed;
+
+
+    [SerializeField]
+    private Animator animation_porte;
+    [SerializeField]
+    private bool is_porte_gauche;
+
+    public static bool porte_gauche_ouverte = true;
+    public static bool porte_droite_ouverte = true;
+
+    [SerializeField]
+    private AudioSource gaucheOuvre;
+    [SerializeField]
+    private AudioSource gaucheFerme;
+    [SerializeField]
+    private AudioSource droiteOuvre;
+    [SerializeField]
+    private AudioSource droiteFerme;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
