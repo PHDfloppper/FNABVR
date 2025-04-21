@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Diagnostics;
 using UnityEngine;
 
@@ -37,27 +38,42 @@ public class Bouton_Porte : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         UnityEngine.Debug.Log("collider entre hahahaha");
-        if (!isPressed)
+        if (LayerMask.LayerToName(other.gameObject.layer) == "hand")
         {
-            UnityEngine.Debug.LogWarning("appuyé fuck you");
-            bouton.transform.localPosition = new Vector3(0f,0.090f,0f);
-            presser = other.gameObject;
-            isPressed = true;
+            if (!isPressed)
+            {
+                UnityEngine.Debug.LogWarning("appuyé fuck you");
+                bouton.transform.localPosition = new Vector3(0f, 0.090f, 0f);
+                presser = other.gameObject;
+                isPressed = true;
+                animation_porte.SetTrigger("ouvrir");
+                animation_porte.SetTrigger("ouvrir");
+                if (is_porte_gauche == true)
+                {
+                    if (porte_gauche_ouverte == true) { porte_gauche_ouverte = false; }
+                    else { porte_gauche_ouverte = true; }
+                }
+                else
+                {
+                    if (porte_droite_ouverte == true) { porte_droite_ouverte = false; }
+                    else { porte_droite_ouverte = true; }
+                }
+                StartCoroutine(ResetButtonPosition());
+            }
         }
+
     }
 
-    private void OnTriggerExit(Collider other)
+    private IEnumerator ResetButtonPosition()
     {
-        if (other == presser)
-        {
-            bouton.transform.localPosition = new Vector3(0f, 0.179f, 0f);
-            isPressed = false;
-        }
+        yield return new WaitForSeconds(1f);
+        bouton.transform.localPosition = new Vector3(0f, 0.179f, 0f);
+        isPressed = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
