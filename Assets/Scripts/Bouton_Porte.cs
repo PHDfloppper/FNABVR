@@ -50,13 +50,13 @@ public class Bouton_Porte : MonoBehaviour
                 animation_porte.SetTrigger("ouvrir");
                 if (is_porte_gauche == true)
                 {
-                    if (porte_gauche_ouverte == true) { porte_gauche_ouverte = false; }
-                    else { porte_gauche_ouverte = true; }
+                    if (porte_gauche_ouverte == true) { gaucheFerme.Play(); porte_gauche_ouverte = false; }
+                    else { porte_gauche_ouverte = true; gaucheOuvre.Play(); }
                 }
                 else
                 {
-                    if (porte_droite_ouverte == true) { porte_droite_ouverte = false; }
-                    else { porte_droite_ouverte = true; }
+                    if (porte_droite_ouverte == true) { droiteFerme.Play(); porte_droite_ouverte = false; }
+                    else { porte_droite_ouverte = true; droiteOuvre.Play(); }
                 }
                 StartCoroutine(ResetButtonPosition());
             }
