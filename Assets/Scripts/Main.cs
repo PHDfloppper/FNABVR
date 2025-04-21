@@ -8,15 +8,24 @@ public class Main : MonoBehaviour
     //variable qui stock à quelle nuit le joueur est rendu
     public static float nombre_nuit = 0f;
 
+    [SerializeField] private float accelerer = 0f;
+    [SerializeField] private GameObject win;
+
+    private void Start()
+    {
+        win.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (tempsNuit <= 240)
-        {
             tempsNuit += Time.deltaTime;
-            //tempsNuit += 0.02f;
-            //Debug.Log($"timer: {tempsNuit}");
+            tempsNuit += accelerer;
+            Debug.LogWarning($"timer: {tempsNuit}");
+        if ( tempsNuit > 240f ) 
+        {
+            Time.timeScale = 0.0f;
+            win.SetActive(true);
         }
     }
 }

@@ -120,15 +120,15 @@ public class MechantAController : MonoBehaviour
         //else { desactiverCheat.Invoke(); }
 
         GestionAgressivite();
-        //if (positionActuelle != 2)
-        //{
+        if (Main.tempsNuit <=240)
+        {
             if (canMove_ == true)
             {
                 float rand_ = UnityEngine.Random.Range(1, 20);
                 canMove_ = false;
                 Invoke("move", 4.6f);
             }
-        //}
+        }
 
         if (CubePersistant.isCustomNight)
         {
