@@ -18,8 +18,8 @@ public class Bouton_Porte : MonoBehaviour
     [SerializeField]
     private bool is_porte_gauche;
 
-    public static bool porte_gauche_ouverte = true;
-    public static bool porte_droite_ouverte = true;
+    public bool porte_gauche_ouverte = true;
+    public bool porte_droite_ouverte = true;
 
     [SerializeField]
     private AudioSource gaucheOuvre;
