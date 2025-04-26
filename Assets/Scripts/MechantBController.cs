@@ -20,6 +20,14 @@ public class MechantBController : MonoBehaviour
     //variable qui indique au gameobject de purpleish qu'il peut faire une nouvelle tentative de mouvement
     bool canMove_ = true;
 
+    [SerializeField]
+    private OVRInput.Controller controllerR = OVRInput.Controller.LTouch;
+
+    [SerializeField]
+    private float amplitude = 1.0f;
+    [SerializeField]
+    private float duration = 0.2f;
+
 
     private void Start()
     {
@@ -76,7 +84,12 @@ public class MechantBController : MonoBehaviour
         if (aggressivite >= rand_)
         {
             if (positionActuelle < 2) { positionActuelle += 1; }
-            else if (positionActuelle == 2 && !porte.porte_droite_ouverte)
+            OVRInput.SetControllerVibration(0, 0, controllerR);
+            if (positionActuelle == 2)
+            {
+                OVRInput.SetControllerVibration(1, amplitude, controllerR);
+            }
+            if (positionActuelle == 2 && !porte.porte_droite_ouverte)
             {
                 int rando_ = UnityEngine.Random.Range(0, 1);
                 positionActuelle = rando_;

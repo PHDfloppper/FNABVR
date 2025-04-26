@@ -2620,7 +2620,10 @@ MonoBehaviour:
   - {fileID: 1327547058}
   porte: {fileID: 687323351}
   gameover: {fileID: 632118285}
-  aggressivite: -20
+  aggressivite: 20
+  controllerR: 2
+  amplitude: 1
+  duration: 0.2
 --- !u!1 &441443824
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,7 +5108,10 @@ MonoBehaviour:
   - {fileID: 441443824}
   porte: {fileID: 1797624703}
   gameover: {fileID: 632118285}
-  aggressivite: -20
+  aggressivite: 20
+  controllerL: 1
+  amplitude: 1
+  duration: 0.2
 --- !u!1 &851155068
 GameObject:
   m_ObjectHideFlags: 0
@@ -6400,7 +6406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78e33517b535ee43b98bebe09827ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerer: 0.1
+  accelerer: 0
   win: {fileID: 754207091}
 --- !u!4 &1157947128
 Transform:
