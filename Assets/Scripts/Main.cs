@@ -12,6 +12,7 @@ public class Main : MonoBehaviour
 
     private void Start()
     {
+        tempsNuit = 0f;
         win.SetActive(false);
     }
 
@@ -20,7 +21,7 @@ public class Main : MonoBehaviour
     {
         tempsNuit += Time.deltaTime;
         tempsNuit += accelerer;
-        Debug.LogWarning($"timer: {tempsNuit}");
+        //Debug.LogWarning($"timer: {tempsNuit}");
         if (tempsNuit > 240f)
         {
             win.SetActive(true);

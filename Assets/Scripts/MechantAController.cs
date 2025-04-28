@@ -73,9 +73,27 @@ public class MechantAController : MonoBehaviour
     //si purpleish doit être à une certaine position, l'instance de purpleish à la position voulu devien visible
     void canMove()
     {
-
+        Debug.LogWarning($"position mechantA: {positionActuelle}");
         mechant.transform.position = mechantPOS[positionActuelle].transform.position;
         mechant.transform.rotation = mechantPOS[positionActuelle].transform.rotation;
+    }
+
+    void coulloir()
+    {
+        if (!porte.porte_gauche_ouverte)
+        {
+            int rando_ = UnityEngine.Random.Range(0, 26);
+            if(rando_ <= 10) { positionActuelle = 0; }
+            else if (rando_ > 10 && rando_ <= 20) { positionActuelle = 1; }
+            else if (rando_ > 10 && rando_ > 20) { positionActuelle = 2; }
+        }
+        else if (porte.porte_gauche_ouverte)
+        {
+            positionActuelle += 1;
+            canMove();
+            gameover.SetActive(true);
+
+        }
     }
 
     //fonction qui détermine si purpleish peut bouger ou non, selon son agressivité.
@@ -83,25 +101,15 @@ public class MechantAController : MonoBehaviour
     void move()
     {
         int rand_ = UnityEngine.Random.Range(1, 20);
-        if (aggressivite >= rand_)
+        if (aggressivite >= rand_ && !gameover.activeSelf)
         {
-            if (positionActuelle < 2) { positionActuelle += 1; }
             OVRInput.SetControllerVibration(0, 0, controllerL);
             if (positionActuelle == 2)
             {
                 OVRInput.SetControllerVibration(1, amplitude, controllerL);
+                Invoke("coulloir", 5f);
             }
-            if (positionActuelle == 2 && !porte.porte_gauche_ouverte)
-            {
-                int rando_ = UnityEngine.Random.Range(0, 1);
-                positionActuelle = rando_;
-            }
-            else if (positionActuelle == 2 && porte.porte_gauche_ouverte)
-            {
-                positionActuelle += 1;
-                gameover.SetActive(true);
-
-            }
+            else if (positionActuelle < 2) { positionActuelle += 1; }
 
             canMove();
         }
@@ -133,13 +141,13 @@ public class MechantAController : MonoBehaviour
         //else { desactiverCheat.Invoke(); }
 
         GestionAgressivite();
-        if (Main.tempsNuit <=240)
+        if (Main.tempsNuit <= 240)
         {
             if (canMove_ == true)
             {
                 float rand_ = UnityEngine.Random.Range(1, 20);
                 canMove_ = false;
-                Invoke("move", 4.6f);
+                Invoke("move", 7f);
             }
         }
 
