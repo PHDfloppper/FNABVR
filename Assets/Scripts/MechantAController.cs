@@ -103,10 +103,8 @@ public class MechantAController : MonoBehaviour
         int rand_ = UnityEngine.Random.Range(1, 20);
         if (aggressivite >= rand_ && !gameover.activeSelf)
         {
-            OVRInput.SetControllerVibration(0, 0, controllerL);
             if (positionActuelle == 2)
             {
-                OVRInput.SetControllerVibration(1, amplitude, controllerL);
                 Invoke("coulloir", 5f);
             }
             else if (positionActuelle < 2) { positionActuelle += 1; }
@@ -139,6 +137,15 @@ public class MechantAController : MonoBehaviour
     {
         //if (MenuDev.hudTricheActif == true) { activerCheat.Invoke(); }
         //else { desactiverCheat.Invoke(); }
+
+        if (positionActuelle == 2)
+        {
+            OVRInput.SetControllerVibration(1, amplitude, controllerL);
+        }
+        else
+        {
+            OVRInput.SetControllerVibration(0, 0, controllerL);
+        }
 
         GestionAgressivite();
         if (Main.tempsNuit <= 240)
