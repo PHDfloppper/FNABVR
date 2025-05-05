@@ -74,6 +74,7 @@ public class Bouton_Porte : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (porte_droite_ouverte || porte_gauche_ouverte) { Main.porteOuverte = true; }
+        else { Main.porteOuverte = false; }
     }
 }
