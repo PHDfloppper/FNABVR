@@ -8,13 +8,13 @@ public class Main : MonoBehaviour
     //variable qui stock à quelle nuit le joueur est rendu
     public static float nombre_nuit = 0f;
 
-    [SerializeField] private float accelerer = 0f;
-    [SerializeField] private GameObject win;
-    [SerializeField] private GameObject gameover;
+    [SerializeField] private float accelerer = 0f; //accelerer l'écoulement du temps
+    [SerializeField] private GameObject win; //gameobject de l'écran de win
+    [SerializeField] private GameObject gameover; //gameobject de l'écran de gameover
 
-    [SerializeField] private float suffocation = 150f;
-    [SerializeField] private Slider sliderSuffoc;
-    public static bool porteOuverte = false;
+    [SerializeField] private float suffocation = 150f;  //niveau de suffocation du joueur
+    [SerializeField] private Slider sliderSuffoc; //slider du niveau de suffocation
+    public static bool porteOuverte = false; //bool qui indique si une des portes est ouverte ou non
 
     private void Start()
     {
@@ -30,20 +30,23 @@ public class Main : MonoBehaviour
     {
         tempsNuit += Time.deltaTime;
         tempsNuit += accelerer;
-        //Debug.LogWarning($"timer: {tempsNuit}");
+
+        //affiche le menu de win si le joueur est en vie à la fin de la nuit
         if (tempsNuit > 240f)
         {
             win.SetActive(true);
         }
 
-        if(porteOuverte)
+        //baisse l'air du joueur si une des portes est fermé
+        if (porteOuverte)
         {
             suffocation -= Time.deltaTime;
 
             sliderSuffoc.value = suffocation;
         }
 
-        if(suffocation < 0f)
+        //affiche l'écran de gameover si le joueur n'a plus d'air
+        if (suffocation < 0f)
         {
             gameover.SetActive(true);
         }

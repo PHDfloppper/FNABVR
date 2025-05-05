@@ -9,8 +9,10 @@ public class MechantBController : MonoBehaviour
     private GameObject[] mechantPOS;
     private int positionActuelle;
 
+    //stock le bouton de la porte
     [SerializeField] private Bouton_Porte porte;
 
+    //stock le gameobject d'écran de gameover
     [SerializeField] private GameObject gameover;
 
     //variable qui stock la valeur de l'agressivité de purpleish. ça va de 0 à 20.
@@ -20,11 +22,14 @@ public class MechantBController : MonoBehaviour
     //variable qui indique au gameobject de purpleish qu'il peut faire une nouvelle tentative de mouvement
     bool canMove_ = true;
 
+    //stock la manette vr de droite
     [SerializeField]
-    private OVRInput.Controller controllerR = OVRInput.Controller.LTouch;
+    private OVRInput.Controller controllerR = OVRInput.Controller.RTouch;
 
+    //amplitude de la vibration
     [SerializeField]
     private float amplitude = 1.0f;
+    //duration de la vibration
     [SerializeField]
     private float duration = 0.2f;
 
@@ -75,6 +80,11 @@ public class MechantBController : MonoBehaviour
         mechant.transform.position = mechantPOS[positionActuelle].transform.position;
         mechant.transform.rotation = mechantPOS[positionActuelle].transform.rotation;
     }
+
+    /// <summary>
+    /// gère quand le méchant est dans le couloir. le code détermine si le méchant peut attaque le joueur si la porte est ouverte (aller dans le bureau)
+    /// ou si la porte est fermé, le méchant va dans une autre position
+    /// </summary>
     void coulloir()
     {
         if (!porte.porte_droite_ouverte)
@@ -132,9 +142,6 @@ public class MechantBController : MonoBehaviour
 
     void Update()
     {
-        //if (MenuDev.hudTricheActif == true) { activerCheat.Invoke(); }
-        //else { desactiverCheat.Invoke(); }
-
         if(positionActuelle == 2)
         {
             OVRInput.SetControllerVibration(1, amplitude, controllerR);
@@ -159,7 +166,5 @@ public class MechantBController : MonoBehaviour
         {
             aggressivite = CubePersistant.purpleishAgg;
         }
-
-        UnityEngine.Debug.Log(positionActuelle);
     }
 }

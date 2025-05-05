@@ -920,7 +920,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3934,7 +3934,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6345,7 +6345,7 @@ MonoBehaviour:
   accelerer: 0
   win: {fileID: 754207091}
   gameover: {fileID: 632118285}
-  suffocation: 150
+  suffocation: 100
   sliderSuffoc: {fileID: 1214073998}
 --- !u!4 &1157947128
 Transform:
@@ -7293,7 +7293,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1733777056}
   "sensibilit\xE9": 0.5
-  vitesse: 1
   cameraTransform: {fileID: 1733777056}
 --- !u!4 &1436308533
 Transform:

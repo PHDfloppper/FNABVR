@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class TestController : MonoBehaviour
 {
+    //Gameobbject des portes
     [SerializeField] private bool porteGauche;
     [SerializeField] private bool porteDroite;
 
+    //gameobject des cubes qui ferme/ouvre les portes pour faire des tests sans avoir à utiliser le casque vr
     [SerializeField] private GameObject porteGaucheCube;
     [SerializeField] private GameObject porteDroiteCube;
 

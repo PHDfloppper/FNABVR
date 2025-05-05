@@ -4,15 +4,17 @@ using UnityEngine.Events;
 
 public class MechantAController : MonoBehaviour
 {
-    //les positions où purpleish peut être
+    //les positions où le mechant peut être
     [SerializeField]
     private GameObject mechant;
     [SerializeField]
     private GameObject[] mechantPOS;
     private int positionActuelle;
 
+    //stock le bouton de la porte
     [SerializeField] private Bouton_Porte porte;
 
+    //stock le gameobject d'écran de gameover
     [SerializeField] private GameObject gameover;
 
     //variable qui stock la valeur de l'agressivité de purpleish. ça va de 0 à 20.
@@ -22,11 +24,14 @@ public class MechantAController : MonoBehaviour
     //variable qui indique au gameobject de purpleish qu'il peut faire une nouvelle tentative de mouvement
     bool canMove_ = true;
 
+    //stock la manette vr de gauche
     [SerializeField]
     private OVRInput.Controller controllerL = OVRInput.Controller.LTouch;
 
+    //amplitude de la vibration
     [SerializeField]
     private float amplitude = 1.0f;
+    //duration de la vibration
     [SerializeField]
     private float duration = 0.2f;
 
@@ -73,11 +78,14 @@ public class MechantAController : MonoBehaviour
     //si purpleish doit être à une certaine position, l'instance de purpleish à la position voulu devien visible
     void canMove()
     {
-        Debug.LogWarning($"position mechantA: {positionActuelle}");
         mechant.transform.position = mechantPOS[positionActuelle].transform.position;
         mechant.transform.rotation = mechantPOS[positionActuelle].transform.rotation;
     }
 
+    /// <summary>
+    /// gère quand le méchant est dans le couloir. le code détermine si le méchant peut attaque le joueur si la porte est ouverte (aller dans le bureau)
+    /// ou si la porte est fermé, le méchant va dans une autre position
+    /// </summary>
     void coulloir()
     {
         if (!porte.porte_gauche_ouverte)
@@ -135,9 +143,6 @@ public class MechantAController : MonoBehaviour
 
     void Update()
     {
-        //if (MenuDev.hudTricheActif == true) { activerCheat.Invoke(); }
-        //else { desactiverCheat.Invoke(); }
-
         if (positionActuelle == 2)
         {
             OVRInput.SetControllerVibration(1, amplitude, controllerL);
@@ -162,7 +167,5 @@ public class MechantAController : MonoBehaviour
         {
             aggressivite = CubePersistant.purpleishAgg;
         }
-
-        UnityEngine.Debug.Log(positionActuelle);
     }
 }

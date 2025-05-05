@@ -4,21 +4,26 @@ using UnityEngine.SceneManagement;
 
 public class BoutonPorte : MonoBehaviour
 {
+    //variables qui stock les gameobject des caméra (la télé dans le bureau)
     [SerializeField] private GameObject CamA1;
     [SerializeField] private GameObject CamA2;
     [SerializeField] private GameObject CamB1;
     [SerializeField] private GameObject CamB2;
 
+    //bools qui déterminent à quel gamebobject de cam le script est attaché
     [SerializeField] private bool isCamA1;
     [SerializeField] private bool isCamA2;
     [SerializeField] private bool isCamB1;
     [SerializeField] private bool isCamB2;
 
+    //Gameobject du bouton
     [SerializeField]
     private GameObject bouton;
 
+    //gameobject de la partie du bouton qui bouge
     GameObject presser;
 
+    //bool qui détermine si le bouton est appuyé ou non
     private bool isPressed;
     void Start()
     {
@@ -26,6 +31,7 @@ public class BoutonPorte : MonoBehaviour
         CamA1.SetActive(true);
     }
 
+    //désactive tout les écrans de cam
     private void DesactiveCam()
     {
         CamA1.SetActive(false);
@@ -38,6 +44,7 @@ public class BoutonPorte : MonoBehaviour
     {
         if (LayerMask.LayerToName(other.gameObject.layer) == "hand")
         {
+            //le joueur appuie sur le bouton si le bouton est pas déjà appuié
             if (!isPressed)
             {
                 if (isCamA1) 
@@ -69,6 +76,7 @@ public class BoutonPorte : MonoBehaviour
 
     }
 
+    //remet la partie qui bouge du bouton comme elle était avant d'être appuyé
     private IEnumerator ResetButtonPosition()
     {
         yield return new WaitForSeconds(1f);

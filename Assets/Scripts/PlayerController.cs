@@ -4,26 +4,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    //transform du gameobject du joueur
     [SerializeField] private Transform playerTransform;
+    //sensibilié dans la caméra
     [SerializeField] private float sensibilité = 2f;
-    [SerializeField] private float vitesse = 5f;
-    //[SerializeField] private CharacterController controller;
+    //transform de la camera du joueur (pas le joueur au complet, vraiment juste sa caméra)
     [SerializeField] private Transform cameraTransform;
 
-    private Vector2 inputDeplacement;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //DeplacerJoueur();
-    }
-
+    //gère la rotation de la caméra avec les joysticks
     public void CameraRotation(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
@@ -32,6 +21,7 @@ public class PlayerController : MonoBehaviour
         playerTransform.Rotate(Vector3.up, rotationHorizontale, Space.World);
     }
 
+    //gère la hauteur de la caméra avec les joysticks
     public void CameraHauteur(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
@@ -41,27 +31,4 @@ public class PlayerController : MonoBehaviour
         positionCamera.y = Mathf.Clamp(positionCamera.y + hauteurDelta * Time.deltaTime, 0.0f, 3f);
         cameraTransform.localPosition = positionCamera;
     }
-
-    //public void CameraJoueurMove(InputAction.CallbackContext context)
-    //{
-    //    inputDeplacement = context.ReadValue<Vector2>();
-    //    UnityEngine.Debug.LogWarning("BOUGE!!!!!");
-    //}
-
-    //private void DeplacerJoueur()
-    //{
-    //    // Calculer la direction selon l'orientation de la caméra
-    //    Vector3 directionAvant = playerTransform.right;
-    //    Vector3 directionDroite = -playerTransform.forward;
-
-    //    directionAvant.y = 0f;
-    //    directionDroite.y = 0f;
-    //    directionAvant.Normalize();
-    //    directionDroite.Normalize();
-
-    //    Vector3 direction = directionAvant * inputDeplacement.y + directionDroite * inputDeplacement.x;
-
-    //    // Déplacer le joueur avec collisions
-    //    controller.Move(direction * vitesse * Time.deltaTime);
-    //}
 }
